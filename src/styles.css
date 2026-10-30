@@ -1,7 +1,8 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@300;400;500;600&display=swap");
+/* Fonts (Fraunces, Inter) are loaded with <link> tags in src/routes/__root.tsx:
+   an @import placed after other rules is ignored by browsers. */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -179,4 +180,60 @@
 
 @utility bg-gold {
   background-color: var(--gold);
+}
+
+/* ---------- Refonte 2026 : animations du portfolio ---------- */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Hero titles: each line slides up from behind a mask. */
+@keyframes line-rise {
+  from {
+    transform: translate3d(0, 105%, 0);
+  }
+}
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.line-mask > span {
+  display: block;
+  animation: line-rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0);
+  }
+}
+.fade-up {
+  animation: fade-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track,
+  .line-mask > span,
+  .fade-up {
+    animation: none;
+  }
 }
