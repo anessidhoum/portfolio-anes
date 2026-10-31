@@ -1,5 +1,23 @@
 // Contenu des études de cas (généré depuis la refonte, en français).
 // Pour modifier un texte, éditez-le directement ici.
+//
+// ————————————————————————————————————————————————————————————————————————————
+// AJOUTER UN NOUVEAU PROJET (mode d'emploi)
+// 1. Ajoutez vos visuels dans src/assets (webp recommandé, photos légères).
+// 2. Importez-les en haut de ce fichier.
+// 3. Ajoutez un objet dans le tableau `projects`, en copiant le modèle d'une
+//    entrée existante. Champs essentiels : slug (unique, sans accent),
+//    client, year, title, summary, role, cover, coverTone, categories,
+//    context, objectives, responsibilities, execution, results.
+// 4. Pour une nouvelle catégorie de projet : ajoutez sa clé dans le type
+//    `Category` et son libellé dans `categories` ci-dessous — le filtre
+//    apparaît automatiquement sur la page d'accueil, avec son compteur.
+// 5. Pour joindre un PDF téléchargeable à une étude de cas : placez le fichier
+//    dans src/assets, importez-le, puis ajoutez-le au champ `documents` du
+//    projet (tableau { href, label } — un bouton de téléchargement est rendu
+//    dans la section « Résultats »).
+// 6. Vérifiez avec `npm run build`, puis déployez.
+// ————————————————————————————————————————————————————————————————————————————
 
 import aventyCalendrierBriefSansErp from "@/assets/aventy-calendrier-brief-sans-erp.webp";
 import aventyCalendrierCarrousel from "@/assets/aventy-calendrier-carrousel.webp";
@@ -37,6 +55,15 @@ import work2 from "@/assets/work-2.jpg";
 import work20 from "@/assets/work-20.jpg";
 import work21 from "@/assets/work-21.jpg";
 import work22 from "@/assets/work-22.pdf";
+
+/** Documents joints — fichiers d'origine de l'utilisateur (SVG et PDF tels quels). */
+import docIzemAdsReport from "@/assets/izem_ads_performance_report.svg";
+import docIzemJulyIntentions from "@/assets/izem_july_content_intentions.svg";
+import docOoredooStrategy from "@/assets/ooredoo_digital_strategy_case_study.svg";
+import docAventyOctoberReport from "@/assets/aventy_october_report_case_study.svg";
+import docZimouCreatorsCaseStudy from "@/assets/zimou_creators_case_study.svg";
+import docZimouCreatorsDeck from "@/assets/zimou-creators-deck.pdf";
+import docZimouCreatorGuide from "@/assets/zimou-creator-guide.pdf";
 import work3 from "@/assets/work-3.mp4";
 import work4 from "@/assets/work-4.jpg";
 import work5 from "@/assets/work-5.jpg";
@@ -44,6 +71,13 @@ import work7 from "@/assets/work-7.jpg";
 import work8 from "@/assets/work-8.jpg";
 import work9 from "@/assets/work-9.jpg";
 import yalidineApplication from "@/assets/yalidine-application.webp";
+import coverIzemDusens from "@/assets/cover-izem-dusens.svg";
+import coverOoredooDusens from "@/assets/cover-ooredoo-dusens.svg";
+import izemBouteilleMangue from "@/assets/izem-bouteille-mangue.jpg";
+import izemBouteilleFruitsRouges from "@/assets/izem-bouteille-fruits-rouges.jpg";
+import izemPostClassiqueVsJuice from "@/assets/izem-post-classique-vs-juice.svg";
+import izemPostTheOnlyWay from "@/assets/izem-post-the-only-way.svg";
+import coverAventyInfluence from "@/assets/cover-aventy-influence.svg";
 
 export type Img = { src: string; alt: string; w: number; h: number; caption?: string };
 export type Video = {
@@ -53,7 +87,15 @@ export type Video = {
   duration: string;
   orientation: "landscape" | "portrait";
 };
-export type Category = "strategy" | "social" | "crm" | "events" | "pitch";
+export type Category =
+  | "strategy"
+  | "social"
+  | "design"
+  | "video"
+  | "crm"
+  | "institutionnel"
+  | "events"
+  | "pitch";
 
 export type Project = {
   slug: string;
@@ -79,13 +121,16 @@ export type Project = {
     videos?: Video[];
   }[];
   results: string;
-  document?: { href: string; label: string };
+  documents?: { href: string; label: string }[];
 };
 
 export const categories: Record<Category, string> = {
-  strategy: "Stratégie",
-  social: "Social media & design",
-  crm: "CRM & email",
+  strategy: "Marketing & stratégie",
+  social: "Réseaux sociaux & contenu",
+  design: "Design graphique",
+  video: "Vidéo & Reels",
+  crm: "CRM & email marketing",
+  institutionnel: "Communication institutionnelle",
   events: "Événementiel",
   pitch: "Proposition freelance",
 };
@@ -96,8 +141,9 @@ export const projects: Project[] = [
     client: "AVENTY ERP — Zimou Group",
     year: "2026",
     title: "Faire adopter un ERP aux e-commerçants algériens",
-    summary: "Stratégie de contenu, calendrier éditorial et visuels pour faire connaître AVENTY ERP, un outil de gestion lancé deux mois plus tôt, auprès de vendeurs qui n'ont jamais utilisé d'ERP.",
-    categories: ["strategy", "social"],
+    summary:
+      "Stratégie de contenu, calendrier éditorial et visuels pour faire connaître AVENTY ERP, un outil de gestion lancé deux mois plus tôt, auprès de vendeurs qui n'ont jamais utilisé d'ERP.",
+    categories: ["strategy", "social", "design"],
     cover: {
       src: aventySansErp,
       alt: "Visuel AVENTY : une voiture violette montée sur des roues de vélo, titre en arabe algérien « Quand tu gères ton commerce sans ERP »",
@@ -105,7 +151,7 @@ export const projects: Project[] = [
       h: 2000,
     },
     coverTone: "dark",
-    role: "Community Manager — stratégie, calendrier éditorial, copywriting et design",
+    role: "Chef de Projet Marketing — pilotage de la stratégie, planification, coordination, influence et reporting",
     tools: ["Canva", "Meta Business Suite"],
     facts: [
       {
@@ -256,15 +302,31 @@ export const projects: Project[] = [
           },
         ],
       },
+      {
+        title: "Faire porter le message par des créateurs",
+        body: "Au-delà des contenus de marque, un volet influence : des créateurs algériens portent l'outil auprès de leurs audiences — vidéos natives, collaborations croisées avec les marques du groupe (Zimou Express, Yalidine) et un live animé par un créateur, du problème du commerçant à la démonstration de l'ERP.",
+      },
+      {
+        title: "Un reporting qui pilote la suite",
+        body: "Chaque mois, la performance des trois plateformes — Instagram, Facebook, TikTok — est consolidée dans un social media report : reach payé face au reach organique, repli par type de contenu, avis testés contre la donnée. Il débouche sur des recommandations claires — à intensifier, à itérer, à tester, à arrêter — et sur un plan de 30 jours, jugé sur des indicateurs hebdomadaires reliés à l'inscription à l'ERP.",
+      },
     ],
-    results: "Dispositif lancé en octobre 2026. La stratégie est un document interne à Zimou Group : seuls la méthode, les concepts et les visuels sont présentés ici, sans les objectifs chiffrés ni les résultats.",
+    results:
+      "Dispositif lancé en octobre 2026. La stratégie et le calendrier sont présentés ici avec la méthode de reporting ; le rapport social media d'octobre — vues, impressions, interactions et plan d'action de novembre — est joint ci-dessous.",
+    documents: [
+      {
+        href: docAventyOctoberReport,
+        label: "Rapport social media d'octobre (SVG)",
+      },
+    ],
   },
   {
     slug: "aventy-email",
     client: "AVENTY ERP — Zimou Group",
     year: "2026",
     title: "Transformer des clients existants en utilisateurs de l'ERP",
-    summary: "Une campagne email de conversion en arabe algérien pour les clients Yalidine et Zimou Express : un seul message, une seule action, un suivi jusqu'à l'ERP créé.",
+    summary:
+      "Une campagne email de conversion en arabe algérien pour les clients Yalidine et Zimou Express : un seul message, une seule action, un suivi jusqu'à l'ERP créé.",
     categories: ["crm", "strategy"],
     cover: {
       src: emailCouverture,
@@ -387,15 +449,281 @@ export const projects: Project[] = [
         ],
       },
     ],
-    results: "Campagne préparée à partir du 19 octobre 2026. Les règles de ciblage et les résultats restent internes à Zimou Group.",
+    results:
+      "Campagne préparée à partir du 19 octobre 2026. Les règles de ciblage et les résultats restent internes à Zimou Group.",
+  },
+  {
+    slug: "aventy-influence",
+    client: "Zimou Group — ZIMOU CREATORS",
+    year: "2026",
+    title: "Bâtir un écosystème de créateurs",
+    summary:
+      "Le programme créateurs de Zimou Group : sélection des talents, briefs, production coordonnée et diffusion authentique sur les projets du groupe, avec AVENTY ERP en vitrine — de la vision au bilan, piloté en tant que Chef de Projet Marketing.",
+    categories: ["social", "strategy"],
+    cover: {
+      src: coverAventyInfluence,
+      alt: "Logo ZIMOU GROUP sur carte blanche, fond sombre et cadre doré — étude de cas campagne d'influence",
+      w: 1600,
+      h: 1200,
+    },
+    coverTone: "dark",
+    role: "Chef de Projet Marketing — conception du programme, sélection des créateurs, coordination, diffusion et suivi",
+    tools: ["Meta Business Suite", "TikTok", "Instagram", "YouTube", "Canva"],
+    facts: [
+      {
+        value: "3",
+        label: "catégories de créateurs : Beginners, Kickers, Stars — une progression à mériter",
+      },
+      {
+        value: "8",
+        label:
+          "étapes de collaboration : Select, Brief, Create, Review, Publish, Amplify, Analyze, Grow",
+      },
+      {
+        value: "6",
+        label: "critères de sélection pondérés — le nombre d'abonnés n'en fait pas partie",
+      },
+      {
+        value: "3",
+        label: "projets couverts : AVENTY ERP, Zimou Express, Zimou Studio",
+      },
+    ],
+    context: [
+      "Zimou Group réunit AVENTY ERP (la gestion e-commerce), Zimou Express (logistique et fulfillment) et Zimou Studio (technologies). Faire parler ces marques ne passe pas par des visuels publicitaires : l'authenticité et la voix propre de chaque créateur portent mieux un produit technique.",
+      "Le programme ZIMOU CREATORS est pensé comme une collaboration de long terme, pas une campagne ponctuelle : des créateurs identifiés, briefés et développés, qui intègrent le message des marques à leur propre style, avec un pilotage marketing de bout en bout — objectif, sélection, planning, coordination, diffusion, mesure.",
+    ],
+    objectives: [
+      "Notoriété — augmenter la visibilité et la reconnaissance des marques du groupe grâce à des contenus créatifs et authentiques.",
+      "Interaction — créer des interactions réelles avec les audiences et renforcer les communautés.",
+      "Acquisition — transformer l'attention en actions mesurables : liens trackés, leads, inscriptions (créer son ERP).",
+    ],
+    responsibilities: [
+      "Conception du programme et de ses supports : deck de présentation du programme et guide officiel des créateurs.",
+      "Définition des critères de sélection et de la grille de progression entre catégories.",
+      "Prise de contact, briefs créatifs et planification des campagnes.",
+      "Coordination de la production : relectures, validations, respect du calendrier.",
+      "Suivi de publication, mesure de performance et bilans.",
+    ],
+    execution: [
+      {
+        title: "Poser la vision du programme",
+        body: "« On ne cherche pas seulement des abonnés : on construit de la créativité, des relations fortes, et on forme des créateurs qui grandissent avec nous. » Le programme s'appuie sur quatre piliers — Create, Grow, Collaborate, Build Together — pour faire des créateurs un vrai prolongement de l'écosystème du groupe.",
+      },
+      {
+        title: "Sélectionner les talents sur des critères précis",
+        body: "La sélection se fait sur critères pondérés — qualité du contenu, potentiel créatif, capacité UGC, professionnalisme, performance, adéquation avec Zimou — jamais sur le nombre d'abonnés. Trois catégories structurent le vivier : Beginners (émergents, potentiel élevé), Kickers (narration solide, production régulière) et Stars (leaders d'opinion d'élite). La progression se mérite : régularité, qualité visuelle, engagement et rigueur.",
+      },
+      {
+        title: "Coordonner la production et la diffusion",
+        body: "Chaque collaboration suit un process en huit étapes — Select, Brief, Create, Review, Publish, Amplify, Analyze, Grow. Les contenus couvrent trois familles : UGC (démonstrations, témoignages, déballages), créatif (storytelling, concepts originaux) et performance (formats orientés conversion). Chaque créateur garde sa voix ; le brief fixe le message, l'action attendue et le calendrier.",
+      },
+      {
+        title: "Mesurer et faire grandir",
+        body: "La mesure s'organise en trois familles d'indicateurs : création (qualité, originalité, assets réutilisables), organique (vues, reach, engagement) et performance (CTR, leads, conversions). Chaque collaboration se referme sur un débriefing constructif qui nourrit la suivante — et les créateurs progressent parmi les catégories.",
+      },
+    ],
+    results:
+      "Programme documenté de bout en bout : l'étude de cas, le deck de présentation « ZIMOU CREATORS » et le guide officiel des créateurs sont joints ci-dessous.",
+    documents: [
+      {
+        href: docZimouCreatorsCaseStudy,
+        label: "Étude de cas ZIMOU CREATORS (SVG)",
+      },
+      {
+        href: docZimouCreatorsDeck,
+        label: "Deck du programme ZIMOU CREATORS (PDF)",
+      },
+      {
+        href: docZimouCreatorGuide,
+        label: "Guide officiel des créateurs (PDF)",
+      },
+    ],
+  },
+  {
+    slug: "izem-dusens",
+    client: "IZEM — DUSENS Group",
+    year: "2026",
+    title: "IZEM : faire vivre une marque sur les réseaux sociaux",
+    summary:
+      "Mai 2026, chez DUSENS Group : gestion des réseaux sociaux d'IZEM — création et publication de contenus, animation de la communauté et communication de marque.",
+    categories: ["social", "design"],
+    cover: {
+      src: coverIzemDusens,
+      alt: "Logo officiel IZEM Energy by Ifri sur fond sombre, cadre doré — étude de cas",
+      w: 1600,
+      h: 1200,
+    },
+    coverTone: "dark",
+    role: "Community Manager — réseaux sociaux, contenus, communauté et communication de marque",
+    tools: [],
+    facts: [
+      {
+        value: "4",
+        label: "missions : réseaux sociaux, contenus, communauté, communication de marque",
+      },
+      {
+        value: "Mai 2026",
+        label: "mandat réalisé chez DUSENS Group",
+      },
+    ],
+    context: [
+      "DUSENS Group accompagne des marques sur le volet social media. En mai 2026, j'ai rejoint l'équipe en tant que community manager, sur deux comptes : IZEM et Ooredoo.",
+      "Chez IZEM, la communication va du post organique à la campagne publicitaire : les intentions de contenus du mois, la publication quotidienne, l'animation de la communauté et le suivi des campagnes Ads comme #B'IZEM forment un seul dispositif.",
+    ],
+    objectives: [
+      "Présence — maintenir un flux régulier de publications aux standards de la marque.",
+      "Publication — créer et mettre en ligne des contenus adaptés à chaque plateforme.",
+      "Communauté — entretenir le lien avec les abonnés et répondre à leurs messages.",
+      "Marque — porter l'image et le ton d'IZEM sur tous les supports publiés.",
+    ],
+    responsibilities: [
+      "Gestion des réseaux sociaux de la marque.",
+      "Création et publication des contenus.",
+      "Gestion de la communauté sur les plateformes de la marque.",
+      "Suivi de campagne : consolidation du rapport Ads #B'IZEM, vague après vague.",
+      "Communication de marque : ton, image et messages.",
+    ],
+    execution: [
+      {
+        title: "Gérer la présence au quotidien",
+        body: "Le poste commence par la gestion des comptes : suivre l'actualité de la marque, préparer les publications et les mettre en ligne au bon moment, plateforme par plateforme.",
+        images: [
+          {
+            src: izemBouteilleMangue,
+            alt: "Bouteille officielle IZEM Energy by Ifri, saveur Mangue — gamme Energy + Juice",
+            w: 800,
+            h: 1835,
+          },
+          {
+            src: izemBouteilleFruitsRouges,
+            alt: "Bouteille officielle IZEM Energy by Ifri, saveur Fruits rouges — gamme Energy + Juice",
+            w: 800,
+            h: 1835,
+          },
+        ],
+      },
+      {
+        title: "Préparer les intentions éditoriales du mois",
+        body: "Chaque mois, des intentions éditoriales posent les publications à venir : un concept, un claim, un descriptif et une référence par visuel. Ce cadre guide la production et garde la ligne de la marque d'une vague de contenus à l'autre.",
+      },
+      {
+        title: "Créer les visuels de campagne",
+        body: "Chaque campagne porte son message sur un visuel frappant. « Classique vs Juice » met les deux gammes en duel au jeu de dames, pendant que la série course et gaming décline l'énergie IZEM en tableau de bord — position, temps, tension du duel jusqu'au dernier virage.",
+        images: [
+          {
+            src: izemPostClassiqueVsJuice,
+            alt: "Visuel de campagne « Classique vs Juice » : deux joueurs autour d'un jeu de dames, bouteille IZEM Energy + Juice saveur Mangue au premier plan",
+            w: 573,
+            h: 730,
+          },
+          {
+            src: izemPostTheOnlyWay,
+            alt: "Visuel de campagne « The Only Way » : conducteur au volant, canette IZEM tendue devant un peloton de voitures de sport, tableau de course en surimpression",
+            w: 589,
+            h: 727,
+          },
+        ],
+      },
+      {
+        title: "Piloter le reporting de la campagne #B'IZEM",
+        body: "La campagne Ads #B'IZEM se joue par vagues : animations, carrousels et formats conversationnels. J'en consolide le reporting — objectifs annoncés face aux réalisés, plateforme par plateforme — pour éclairer les décisions de la vague suivante.",
+      },
+      {
+        title: "Animer la communauté",
+        body: "Publier ne suffit pas : le compte vit aussi par ses échanges avec les abonnés, dans le ton défini pour la marque.",
+      },
+    ],
+    results:
+      "Mandat de mai 2026 réalisé chez DUSENS Group. Cette étude de cas présente le périmètre et la méthode ; le rapport Ads #B'IZEM (objectifs face aux résultats par vague) et les intentions de contenu de juillet sont joints ci-dessous.",
+    documents: [
+      {
+        href: docIzemAdsReport,
+        label: "Rapport Ads #B'IZEM — synthèse (SVG)",
+      },
+      {
+        href: docIzemJulyIntentions,
+        label: "Intentions de contenu de juillet (SVG)",
+      },
+    ],
+  },
+  {
+    slug: "ooredoo-dusens",
+    client: "Ooredoo — DUSENS Group",
+    year: "2026",
+    title: "Ooredoo : engager la communauté d'un opérateur télécom",
+    summary:
+      "Mai 2026, chez DUSENS Group : contenus social media et communication digitale pour Ooredoo — création de contenus, engagement de la communauté et soutien à la communication de la marque.",
+    categories: ["social", "strategy"],
+    cover: {
+      src: coverOoredooDusens,
+      alt: "Logo officiel Ooredoo sur carte blanche, fond sombre et cadre doré — étude de cas",
+      w: 1600,
+      h: 1200,
+    },
+    coverTone: "dark",
+    role: "Community Manager — contenus, engagement, analyse de performance et communication digitale",
+    tools: [],
+    facts: [
+      {
+        value: "4",
+        label: "volets : contenus, engagement, analyse de performance, communication digitale",
+      },
+      {
+        value: "Mai 2026",
+        label: "mandat réalisé chez DUSENS Group",
+      },
+    ],
+    context: [
+      "Ooredoo est un opérateur de télécommunications présent en Algérie. Chez DUSENS Group, où j'ai travaillé en mai 2026, j'ai participé aux projets social media de la marque avec l'équipe de l'agence.",
+      "Chez Ooredoo, le travail ne s'arrête pas à la publication : un bilan périodique compare la performance digitale de la marque à celle de ses concurrents, oriente les projections et les objectifs, et nourrit le plan d'action de la suite de l'année.",
+    ],
+    objectives: [
+      "Visibilité — publier des contenus en phase avec le dispositif social media de la marque.",
+      "Engagement — créer des occasions d'échange avec la communauté.",
+      "Image — soutenir la communication digitale de la marque sur ses plateformes.",
+      "Mesure — relier chaque action à une lecture de la performance face à la concurrence.",
+    ],
+    responsibilities: [
+      "Création de contenus social media.",
+      "Engagement de la communauté sur les plateformes de la marque.",
+      "Analyse de la performance digitale et benchmark de la concurrence.",
+      "Soutien à la communication digitale de la marque.",
+    ],
+    execution: [
+      {
+        title: "Créer pour une grande marque télécom",
+        body: "Ooredoo impose un niveau d'exigence élevé : chaque contenu est préparé, vérifié et adapté à la voix de la marque avant publication.",
+      },
+      {
+        title: "Mesurer la performance face à la concurrence",
+        body: "Le bilan Ooredoo revisite le contenu publié semaine par semaine et jour par jour, sur toutes les plateformes, et le compare à la communication des concurrents. Cette lecture sert de base aux projections, aux objectifs et au plan d'action de la suite de l'année.",
+      },
+      {
+        title: "S'inspirer des acteurs de référence",
+        body: "Des benchmarks comparatifs étudient les pratiques des acteurs qui inspirent le marché — par exemple la communication social media des plateformes de streaming en France — pour nourrir les recommandations de l'agence.",
+      },
+      {
+        title: "Engager la communauté",
+        body: "Au-delà de la publication, l'essentiel se joue dans la relation avec les abonnés : leur répondre, entamer des conversations et nourrir leur intérêt dans la durée.",
+      },
+    ],
+    results:
+      "Mandat de mai 2026 réalisé chez DUSENS Group. Cette étude de cas présente le périmètre et la méthode ; l'analyse digitale d'Ooredoo — chiffres du H1, diagnostic stratégique et projections H2 — est jointe ci-dessous.",
+    documents: [
+      {
+        href: docOoredooStrategy,
+        label: "Analyse digitale & projections H2 (SVG)",
+      },
+    ],
   },
   {
     slug: "setram",
     client: "SETRAM",
     year: "2025 — 2026",
     title: "Communiquer pour un opérateur de tramway, sur le terrain et en ligne",
-    summary: "Quatre mois comme chargé de communication chez SETRAM, l'opérateur des tramways en Algérie : communication interne et externe, événements et création de contenus digitaux.",
-    categories: ["events", "social"],
+    summary:
+      "Quatre mois comme chargé de communication chez SETRAM, l'opérateur des tramways en Algérie : communication interne et externe, événements et création de contenus digitaux.",
+    categories: ["institutionnel", "events", "video"],
     cover: {
       src: work19,
       alt: "Une rame de tramway SETRAM en station, sous un ciel bleu, des pigeons sur le quai",
@@ -477,15 +805,17 @@ export const projects: Project[] = [
         ],
       },
     ],
-    results: "Mission de décembre 2025 à mars 2026. Les contenus présentés sont des exemples de production ; aucune statistique n'est publiée ici.",
+    results:
+      "Mission de décembre 2025 à mars 2026. Les contenus présentés sont des exemples de production ; aucune statistique n'est publiée ici.",
   },
   {
     slug: "cap-emergency",
     client: "CAP Emergency",
     year: "2024 — 2026",
     title: "Informer et rassurer : la communication d'une structure de santé",
-    summary: "Plus de deux ans de marketing digital pour CAP Emergency, à Bordj El Bahri : réseaux sociaux, visuels, vidéos, rédaction et publicités, pour faire connaître les services et garder le lien avec les patients.",
-    categories: ["social"],
+    summary:
+      "Plus de deux ans de marketing digital pour CAP Emergency, à Bordj El Bahri : réseaux sociaux, visuels, vidéos, rédaction et publicités, pour faire connaître les services et garder le lien avec les patients.",
+    categories: ["social", "video"],
     cover: {
       src: work8,
       alt: "Visuel CAP Emergency : « Nos services d'urgence sont disponibles 24h », stéthoscope sur blouse bleue",
@@ -589,15 +919,17 @@ export const projects: Project[] = [
         ],
       },
     ],
-    results: "Collaboration de juin 2024 à octobre 2026. Les statistiques de la page ne sont pas présentées ici.",
+    results:
+      "Collaboration de juin 2024 à octobre 2026. Les statistiques de la page ne sont pas présentées ici.",
   },
   {
     slug: "tedx",
     client: "TEDx Algérie",
     year: "2025",
     title: "TEDx : donner envie de venir, puis faire vivre l'événement",
-    summary: "Manager au sein du projet international TEDx Algérie : communication digitale, affiches, vidéo de promotion et couverture d'événements, dont l'édition « Quand l'Art rencontre le Business » avec l'Institut français.",
-    categories: ["events"],
+    summary:
+      "Manager au sein du projet international TEDx Algérie : communication digitale, affiches, vidéo de promotion et couverture d'événements, dont l'édition « Quand l'Art rencontre le Business » avec l'Institut français.",
+    categories: ["events", "video"],
     cover: {
       src: work14,
       alt: "Affiche TEDx × Institut français « Quand l'Art rencontre le Business », jeudi 17 juillet 2025",
@@ -694,7 +1026,8 @@ export const projects: Project[] = [
     client: "White Industry",
     year: "2025",
     title: "Positionner un fabricant algérien auprès d'une nouvelle génération d'entrepreneurs",
-    summary: "Proposition freelance : stratégie de contenu, identité verbale et plan éditorial d'une semaine en trois langues, et visuels, pour White Industry, fabricant de cosmétiques et de compléments alimentaires qui accompagne aussi la création de marques.",
+    summary:
+      "Proposition freelance : stratégie de contenu, identité verbale et plan éditorial d'une semaine en trois langues, et visuels, pour White Industry, fabricant de cosmétiques et de compléments alimentaires qui accompagne aussi la création de marques.",
     categories: ["pitch", "strategy"],
     cover: {
       src: work2,
@@ -835,11 +1168,14 @@ export const projects: Project[] = [
         ],
       },
     ],
-    results: "Proposition remise en freelance, présentée ici comme exemple de démarche. Elle ne reflète pas nécessairement la communication actuelle de la marque.",
-    document: {
-      href: work22,
-      label: "Lire la proposition complète (PDF)",
-    },
+    results:
+      "Proposition remise en freelance, présentée ici comme exemple de démarche. Elle ne reflète pas nécessairement la communication actuelle de la marque.",
+    documents: [
+      {
+        href: work22,
+        label: "Lire la proposition complète (PDF)",
+      },
+    ],
   },
 ];
 

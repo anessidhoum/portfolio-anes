@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111322"/><stop offset="1" stop-color="#24283e"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#bg)"/><rect width="18" height="900" fill="#e84b82"/>
+<circle cx="1450" cy="100" r="240" fill="#e84b82" opacity=".08"/>
+<text x="90" y="86" fill="#e84b82" font-family="Arial" font-size="24" font-weight="bold" letter-spacing="4">DIGITAL STRATEGY · COMPETITIVE ANALYSIS · 2026</text>
+<text x="90" y="174" fill="#fff" font-family="Arial" font-size="66" font-weight="bold">OOREDOO DIGITAL STRATEGY</text>
+<text x="92" y="224" fill="#c6cad8" font-family="Arial" font-size="27">Performance review, competitive positioning and H2 projections across four social platforms.</text>
+<line x1="90" y1="270" x2="1510" y2="270" stroke="#fff" opacity=".16"/><rect x="90.0" y="310" width="338.5" height="150" rx="18" fill="#fff" opacity=".07"/>
+<text x="114.0" y="380" fill="#e84b82" font-family="Arial" font-size="48" font-weight="bold">+169%</text>
+<text x="114.0" y="420" fill="#d7d9e2" font-family="Arial" font-size="21">TikTok community growth · H1 2026</text><rect x="450.5" y="310" width="338.5" height="150" rx="18" fill="#fff" opacity=".07"/>
+<text x="474.5" y="380" fill="#e84b82" font-family="Arial" font-size="48" font-weight="bold">5.3%</text>
+<text x="474.5" y="420" fill="#d7d9e2" font-family="Arial" font-size="21">Instagram engagement rate · May</text><rect x="811.0" y="310" width="338.5" height="150" rx="18" fill="#fff" opacity=".07"/>
+<text x="835.0" y="380" fill="#e84b82" font-family="Arial" font-size="48" font-weight="bold">43.9%</text>
+<text x="835.0" y="420" fill="#d7d9e2" font-family="Arial" font-size="21">Instagram video completion · May</text><rect x="1171.5" y="310" width="338.5" height="150" rx="18" fill="#fff" opacity=".07"/>
+<text x="1195.5" y="380" fill="#e84b82" font-family="Arial" font-size="48" font-weight="bold">7.4%</text>
+<text x="1195.5" y="420" fill="#d7d9e2" font-family="Arial" font-size="21">TikTok engagement rate · April</text><text x="90" y="535" fill="#e84b82" font-family="Arial" font-size="24" font-weight="bold" letter-spacing="2">STRATEGIC DIAGNOSIS</text><circle cx="97" cy="582" r="5" fill="#e84b82"/><text x="118" y="590" fill="#f0f1f5" font-family="Arial" font-size="23">Facebook: mature community; prioritize activation</text><circle cx="97" cy="636" r="5" fill="#e84b82"/><text x="118" y="644" fill="#f0f1f5" font-family="Arial" font-size="23">Instagram: strong engagement opportunity</text><circle cx="97" cy="690" r="5" fill="#e84b82"/><text x="118" y="698" fill="#f0f1f5" font-family="Arial" font-size="23">TikTok: lead acquisition and growth engine</text><text x="822" y="535" fill="#e84b82" font-family="Arial" font-size="24" font-weight="bold" letter-spacing="2">ACTION FRAMEWORK</text><circle cx="829" cy="582" r="5" fill="#e84b82"/><text x="850" y="590" fill="#f0f1f5" font-family="Arial" font-size="23">Platform-specific content and campaign concepts</text><circle cx="829" cy="636" r="5" fill="#e84b82"/><text x="850" y="644" fill="#f0f1f5" font-family="Arial" font-size="23">Three ambition tiers for H2 objectives</text><circle cx="829" cy="690" r="5" fill="#e84b82"/><text x="850" y="698" fill="#f0f1f5" font-family="Arial" font-size="23">KPIs linked to creators and content formats</text><line x1="90" y1="810" x2="1510" y2="810" stroke="#fff" opacity=".16"/>
+<text x="90" y="850" fill="#aeb3c5" font-family="Arial" font-size="18">Source: Digital Analysis &amp; Projections vs. Competition, Round 1. H2 figures are objectives, not guaranteed outcomes.</text>
+<text x="1510" y="850" fill="#aeb3c5" font-family="Arial" font-size="18" text-anchor="end">PORTFOLIO CASE STUDY · ANES SIDHOUM</text></svg>

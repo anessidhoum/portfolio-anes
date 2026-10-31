@@ -45,6 +45,7 @@ export const Route = createFileRoute("/")({
 
 const organisations = [
   "Zimou Group",
+  "DUSENS Group",
   "AVENTY ERP",
   "Yalidine",
   "Ooredoo",
@@ -123,26 +124,45 @@ const languages = [
   { name: "Allemand", level: "B1" },
 ];
 
-type Entry = { period: string; title: string; subtitle: string; detail?: string };
+type Entry = {
+  period: string;
+  title: string;
+  subtitle: string;
+  detail?: string;
+  /** Études de cas liées, affichées sous l'entrée (slug + libellé court). */
+  links?: { slug: string; label: string }[];
+};
 
 const experiences: Entry[] = [
   {
     period: "07.2026 — aujourd'hui",
     title: "Zimou Group",
-    subtitle: "Community Manager",
-    detail: "Gestion des réseaux sociaux, marketing d'influence, copywriting, reporting KPI.",
+    subtitle: "Chef de Projet Marketing",
+    detail:
+      "Conception et pilotage des campagnes social media de l'ERP AVENTY : planification, coordination des équipes et des créateurs, exécution et rapport mensuel de performance.",
+    links: [
+      { slug: "aventy-lancement", label: "Stratégie AVENTY" },
+      { slug: "aventy-influence", label: "Campagne d'influence" },
+      { slug: "aventy-email", label: "Campagne email" },
+    ],
   },
   {
     period: "05.2026",
     title: "DUSENS Group",
     subtitle: "Community Manager",
-    detail: "Social media pour IZEM et Ooredoo : contenus, animation de communauté, reporting KPI.",
+    detail:
+      "Social media pour IZEM et Ooredoo : création et publication de contenus, animation de communauté, communication de marque.",
+    links: [
+      { slug: "izem-dusens", label: "Projet IZEM" },
+      { slug: "ooredoo-dusens", label: "Projet Ooredoo" },
+    ],
   },
   {
     period: "12.2025 — 03.2026",
     title: "SETRAM",
     subtitle: "Chargé de communication",
     detail: "Communication interne et externe, communication événementielle, création digitale.",
+    links: [{ slug: "setram", label: "Étude de cas" }],
   },
   {
     period: "04.2025 — 06.2025",
@@ -161,6 +181,7 @@ const experiences: Entry[] = [
     title: "CAP Emergency",
     subtitle: "Chargé marketing digital",
     detail: "Réseaux sociaux, infographies et vidéos, copywriting, campagnes publicitaires.",
+    links: [{ slug: "cap-emergency", label: "Étude de cas" }],
   },
   {
     period: "2023 — 2024",
@@ -210,6 +231,7 @@ const engagements: Entry[] = [
     title: "Projet international TEDx Algérie",
     subtitle: "Manager",
     detail: "Contribution à l'organisation d'événements à portée internationale.",
+    links: [{ slug: "tedx", label: "Étude de cas" }],
   },
   {
     period: "2023",
@@ -302,7 +324,7 @@ function Hero() {
               className="aspect-[4/5] w-full object-cover"
             />
             <figcaption className="flex items-center justify-between gap-3 pt-3 text-xs text-primary-foreground md:text-sm">
-              <span>Actuellement Community Manager chez Zimou Group</span>
+              <span>Actuellement Chef de Projet Marketing chez Zimou Group</span>
               <span className="h-2 w-2 shrink-0 rounded-full bg-gold" />
             </figcaption>
           </div>
@@ -324,7 +346,10 @@ function Organisations() {
   const row = (hidden: boolean) => (
     <ul aria-hidden={hidden || undefined} className="flex shrink-0 items-center">
       {organisations.map((o) => (
-        <li key={o} className="flex items-center font-display text-3xl whitespace-nowrap md:text-5xl">
+        <li
+          key={o}
+          className="flex items-center font-display text-3xl whitespace-nowrap md:text-5xl"
+        >
           <span className="px-6 md:px-10">{o}</span>
           <span className="text-gold">✦</span>
         </li>
@@ -363,7 +388,9 @@ function Work() {
         className="mt-10 flex flex-wrap gap-2 md:ml-[25%] md:pl-1.5"
       >
         {[null, ...filters].map((c) => {
-          const count = c ? projects.filter((p) => p.categories.includes(c)).length : projects.length;
+          const count = c
+            ? projects.filter((p) => p.categories.includes(c)).length
+            : projects.length;
           return (
             <button
               key={c ?? "all"}
@@ -489,8 +516,8 @@ function About() {
                 Diplômé d'un Master 2 en communication institutionnelle de l'École nationale
                 supérieure de journalisme et des sciences de l'information (2025), j'ai travaillé
                 aussi bien pour des entreprises publiques — Algérie Télécom, le Crédit Populaire
-                d'Algérie, la SNTF, SETRAM — que pour des groupes privés comme Zimou Group ou
-                DUSENS Group, où j'ai géré les réseaux sociaux d'IZEM et d'Ooredoo.
+                d'Algérie, la SNTF, SETRAM — que pour des groupes privés comme Zimou Group ou DUSENS
+                Group, où j'ai géré les réseaux sociaux d'IZEM et d'Ooredoo.
               </Reveal>
               <Reveal as="p" delay={120}>
                 Ce double regard est ce que j'apporte : je rédige un communiqué de presse comme un
@@ -543,7 +570,11 @@ function About() {
 
 function Expertise() {
   return (
-    <section id="expertise" aria-labelledby="expertise-title" className={`${container} py-24 md:py-36`}>
+    <section
+      id="expertise"
+      aria-labelledby="expertise-title"
+      className={`${container} py-24 md:py-36`}
+    >
       <SectionHead
         index="03"
         id="expertise-title"
@@ -579,7 +610,10 @@ function Expertise() {
           <h3 className={`${eyebrow} text-muted-foreground`}>Outils</h3>
           <ul className="mt-5 flex flex-wrap gap-2">
             {tools.map((t) => (
-              <li key={t} className="rounded-full border border-border bg-background px-4 py-2 text-sm">
+              <li
+                key={t}
+                className="rounded-full border border-border bg-background px-4 py-2 text-sm"
+              >
                 {t}
               </li>
             ))}
@@ -624,6 +658,25 @@ function Timeline({ title, entries }: { title: string; entries: Entry[] }) {
                 {e.detail}
               </p>
             ) : null}
+            {e.links ? (
+              <p
+                className={`col-span-12 flex flex-wrap items-center gap-2 ${
+                  e.detail ? "md:col-span-5 md:pt-0" : ""
+                }`}
+              >
+                {e.links.map((l) => (
+                  <Link
+                    key={l.slug}
+                    to="/projects/$slug"
+                    params={{ slug: l.slug }}
+                    className="group inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-xs text-muted-foreground transition hover:border-gold hover:text-foreground"
+                  >
+                    {l.label}
+                    <ArrowUpRight className="h-3 w-3 transition group-hover:text-gold" />
+                  </Link>
+                ))}
+              </p>
+            ) : null}
           </Reveal>
         ))}
       </ol>
@@ -633,11 +686,7 @@ function Timeline({ title, entries }: { title: string; entries: Entry[] }) {
 
 function Career() {
   return (
-    <section
-      id="experience"
-      aria-labelledby="experience-title"
-      className="py-24 md:py-36"
-    >
+    <section id="experience" aria-labelledby="experience-title" className="py-24 md:py-36">
       <div className={container}>
         <SectionHead index="04" id="experience-title" title="Parcours" />
         <div className="mt-14 space-y-16 md:mt-20 md:space-y-24">

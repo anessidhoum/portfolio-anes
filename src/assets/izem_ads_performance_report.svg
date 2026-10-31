@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101322"/><stop offset="1" stop-color="#252a40"/></linearGradient></defs>
+<rect width="1600" height="900" fill="url(#bg)"/><rect width="16" height="900" fill="#ff8a35"/>
+<circle cx="1450" cy="90" r="240" fill="#ff8a35" opacity=".07"/>
+<text x="86" y="78" fill="#ff8a35" font-family="Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="4">IZEM · PAID MEDIA · PERFORMANCE REPORT</text>
+<text x="86" y="166" fill="#fff" font-family="Arial,sans-serif" font-size="62" font-weight="800">B’IZEM ADS PERFORMANCE</text>
+<text x="88" y="218" fill="#c6cad8" font-family="Arial,sans-serif" font-size="25">Meta campaign delivery: selected objectives and actual results from the reporting deck.</text>
+<line x1="86" y1="258" x2="1510" y2="258" stroke="#fff" opacity=".18"/>
+<rect x="86" y="300" width="445" height="205" rx="20" fill="#fff" opacity=".065"/>
+<text x="111" y="367" fill="#ff8a35" font-family="Arial,sans-serif" font-size="47" font-weight="800">300,419</text>
+<text x="111" y="412" fill="#f2f3f7" font-family="Arial,sans-serif" font-size="21">Mechanical animation · Wave 1</text>
+<text x="111" y="457" fill="#b8bdcc" font-family="Arial,sans-serif" font-size="18">300K views target</text><rect x="556" y="300" width="445" height="205" rx="20" fill="#fff" opacity=".065"/>
+<text x="581" y="367" fill="#ff8a35" font-family="Arial,sans-serif" font-size="47" font-weight="800">155,586</text>
+<text x="581" y="412" fill="#f2f3f7" font-family="Arial,sans-serif" font-size="21">Mechanical animation · Wave 2</text>
+<text x="581" y="457" fill="#b8bdcc" font-family="Arial,sans-serif" font-size="18">150K views target</text><rect x="1026" y="300" width="445" height="205" rx="20" fill="#fff" opacity=".065"/>
+<text x="1051" y="367" fill="#ff8a35" font-family="Arial,sans-serif" font-size="47" font-weight="800">5,778,384</text>
+<text x="1051" y="412" fill="#f2f3f7" font-family="Arial,sans-serif" font-size="21">Mechanical carousel</text>
+<text x="1051" y="457" fill="#b8bdcc" font-family="Arial,sans-serif" font-size="18">5M impressions target</text><rect x="86" y="529" width="445" height="205" rx="20" fill="#fff" opacity=".065"/>
+<text x="111" y="596" fill="#ff8a35" font-family="Arial,sans-serif" font-size="47" font-weight="800">2,626</text>
+<text x="111" y="641" fill="#f2f3f7" font-family="Arial,sans-serif" font-size="21">Gaming conversation</text>
+<text x="111" y="686" fill="#b8bdcc" font-family="Arial,sans-serif" font-size="18">2,500 interactions target</text><rect x="556" y="529" width="445" height="205" rx="20" fill="#fff" opacity=".065"/>
+<text x="581" y="596" fill="#ff8a35" font-family="Arial,sans-serif" font-size="47" font-weight="800">2,115</text>
+<text x="581" y="641" fill="#f2f3f7" font-family="Arial,sans-serif" font-size="21">Talent conversation</text>
+<text x="581" y="686" fill="#b8bdcc" font-family="Arial,sans-serif" font-size="18">2,000 interactions target</text><rect x="1026" y="529" width="445" height="205" rx="20" fill="#fff" opacity=".065"/>
+<text x="1051" y="596" fill="#ff8a35" font-family="Arial,sans-serif" font-size="47" font-weight="800">6,648</text>
+<text x="1051" y="641" fill="#f2f3f7" font-family="Arial,sans-serif" font-size="21">Passion conversation</text>
+<text x="1051" y="686" fill="#b8bdcc" font-family="Arial,sans-serif" font-size="18">5,000 interactions target</text><text x="86" y="775" fill="#cbd0dc" font-family="Arial,sans-serif" font-size="20">Additional reported results: Conversationnel Passion views 37,383 · Talent views 213,177 · Hobby views 105,865 · Film views 58,446.</text><text x="86" y="800" fill="#9fa6b8" font-family="Arial,sans-serif" font-size="16">The report also records 1,366 interactions for Conversationnel 2025 (1.5K target) and 1,742 for Hobby (1,750 target).</text>
+<line x1="86" y1="815" x2="1510" y2="815" stroke="#fff" opacity=".18"/>
+<text x="86" y="855" fill="#aeb3c5" font-family="Arial,sans-serif" font-size="18">Source: IZEM — Rapport Ads B’IZEM (13 pages). Figures reproduced from the supplied report.</text>
+<text x="1510" y="855" fill="#aeb3c5" font-family="Arial,sans-serif" font-size="18" text-anchor="end">DUSENS GROUP · IZEM · PORTFOLIO</text>
+</svg>

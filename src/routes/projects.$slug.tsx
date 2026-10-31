@@ -98,7 +98,7 @@ function ProjectPage() {
     { label: "Client", value: project.client },
     { label: "Année", value: project.year },
     { label: "Rôle", value: project.role },
-    { label: "Outils", value: project.tools.join(", ") },
+    ...(project.tools.length > 0 ? [{ label: "Outils", value: project.tools.join(", ") }] : []),
   ];
 
   return (
@@ -155,7 +155,12 @@ function ProjectPage() {
           </header>
 
           <div className={`${container} mt-12 md:mt-16`}>
-            <Cover image={project.cover} tone={project.coverTone} priority className="md:aspect-[16/9]" />
+            <Cover
+              image={project.cover}
+              tone={project.coverTone}
+              priority
+              className="md:aspect-[16/9]"
+            />
           </div>
 
           <div className={`${container} mt-16 md:mt-24`}>
@@ -286,16 +291,21 @@ function ProjectPage() {
               <p className="bg-primary/10 p-6 text-lg leading-relaxed text-primary md:p-8 md:text-xl">
                 {project.results}
               </p>
-              {project.document ? (
-                <a
-                  href={project.document.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6 inline-flex h-12 items-center gap-2 rounded-full border border-border px-6 transition hover:border-foreground"
-                >
-                  <Download className="h-4 w-4" />
-                  {project.document.label}
-                </a>
+              {project.documents?.length ? (
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {project.documents.map((doc) => (
+                    <a
+                      key={doc.label}
+                      href={doc.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex h-12 items-center gap-2 rounded-full border border-border px-6 transition hover:border-foreground"
+                    >
+                      <Download className="h-4 w-4" />
+                      {doc.label}
+                    </a>
+                  ))}
+                </div>
               ) : null}
             </Block>
           </div>
